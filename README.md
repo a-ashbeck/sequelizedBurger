@@ -1,4 +1,4 @@
-# burger
+# sequelizedBurger
 
 This is homework 13 for the Northwestern Coding Boot Camp.
 
