@@ -22,7 +22,7 @@ You will likely be prompted for your credentials. Assuming you know your passwor
 
 Open or paste the contents of the `schema.sql` file in the IDE, and run the script, preferably function by function in order to check possible errors as you go along. If you would like some starter data, you can also run the `seeds.sql` file.
 
-Next, navigate to the `connection.js` file, and in the `connection variable` (defined at the top of these files), enter in your password in the `password` property of the object in the `''`.
+Next, navigate to the `config.js` file, and in the `development object` (defined at the top of these files), enter in your password in the `password` property of the object in the `''`.
 
 ## Overview
 
