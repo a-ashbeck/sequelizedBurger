@@ -1,27 +1,27 @@
-// Import the ORM to create functions that will interact with the database.
-var orm = require("../config/orm.js");
-
-// Burger object to be exported with data update functions
-var burger = {
-    // Grabs all data from burger table
-    selectAll: function(cb) {
-        orm.selectAll('burgers', function(result) {
-            cb(result);
-        });
+module.exports = function(sequelize, DataTypes) {
+  var Burger = sequelize.define('Burger', {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
     },
-    // Inserts new burger into burger table
-    insertOne: function(newBurgerName, cb) {
-        orm.insertOne('burgers', 'burger_name', newBurgerName, function(result) {
-            cb(result);
-        });
+    burger_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      len: [1]
     },
-    // Updates a previously existing burger
-    updateOne: function(devouredBurgerID, cb) {
-        orm.updateOne('burgers', 'devoured = true', devouredBurgerID, function(result) {
-            cb(result);
-        });
+    devoured: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false
     }
-};
+    // ,
+    // created_at: {
+    //     type: DataTypes.NOW,
+    //     allowNull: false
+    // }
+  });
 
-// Export the database functions for the burgers_controller.js
-module.exports = burger;
+  return Burger;
+};

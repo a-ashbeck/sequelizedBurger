@@ -1,12 +1,12 @@
 // Require dependencies
 var express = require('express');
-var burger = require('../models/burger.js');
+var db = require('../models');
 
 // Export controller defined routes
 module.exports = function(app) {
     // Get all burgers to be displayed
     app.get('/', function(request, response) {
-        burger.selectAll(function(burgerData) {
+        db.Burger.findAll({}).then(function(burgerData) {
             // Object to ship up to view
             var incomingBurgerDataObject = {
                 burgers: burgerData
@@ -14,6 +14,8 @@ module.exports = function(app) {
 
             // Ship it up
             response.render('index', incomingBurgerDataObject);
+        }).catch(function(err) {
+            console.log(err);
         });
     });
 
@@ -26,19 +28,28 @@ module.exports = function(app) {
             return;
         }
         // Create the new burger in DB
-        burger.insertOne(newBurger, function() {
+        db.Burger.create({
+            burger_name: newBurger
+        }).then(function() {
             response.redirect('/');
+        }).catch(function(err) {
+            console.log(err);
         });
     });
 
     // Update burger state in DB
     app.put('/:id', function(request, response) {
-        // Set condition variable
-        var id = 'id = ' + request.params.id;
-
         // Update the burger
-        burger.updateOne(id, function() {
+        db.Burger.update({
+            devoured: true
+        }, {
+            where: {
+                id: request.params.id
+            }
+        }).then(function() {
             response.redirect('/');
+        }).catch(function(err) {
+            console.log(err);
         });
     });
 };
