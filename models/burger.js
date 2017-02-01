@@ -16,11 +16,6 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: false,
       allowNull: false
     }
-    // ,
-    // created_at: {
-    //     type: DataTypes.NOW,
-    //     allowNull: false
-    // }
   });
 
   return Burger;
