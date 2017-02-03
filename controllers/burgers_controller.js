@@ -9,10 +9,9 @@ module.exports = function(app) {
         db.Burger.findAll({}).then(function(burgerData) {
             // Object to ship up to view
             var incomingBurgerDataObject = {
-                burgers: burgerData
-            }
-
-            // Ship it up
+                    burgers: burgerData
+                }
+                // Ship it up
             response.render('index', incomingBurgerDataObject);
         }).catch(function(err) {
             console.log(err);
